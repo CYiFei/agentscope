@@ -7,16 +7,15 @@
 """
 import asyncio
 
-from agentscope.model import DeepSeekChatModel
-from agentscope.credential import DeepSeekCredential
 from agentscope.agent import Agent
 from agentscope.message import UserMsg
 
+from common import build_model
+
 
 async def main() -> None:
-    # 故意使用错误 key
-    bad_credential = DeepSeekCredential(api_key="sk-错误的keyxxxxxxxxxxxxxxxx")
-    model = DeepSeekChatModel(credential=bad_credential, model="deepseek-chat")
+    # 故意使用错误 key（纯 ASCII，避免 HTTP 头发送时编码报错）
+    model = build_model(api_key="sk-invalid-test-key-0000000000000000")
     agent = Agent(
         name="助手",
         system_prompt="你是一个助手。",

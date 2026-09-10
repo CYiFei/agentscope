@@ -22,6 +22,9 @@ python test_hitl.py                # 场景9：Human-in-the-loop 人机交互
 
 > key 从环境变量 `DEEPSEEK_API_KEY` 读取，未设置时脚本会报错提示；
 > `DEEPSEEK_BASE_URL` 默认 `https://api.deepseek.com`，可用于代理/网关。
+> 测试默认忽略 shell 的 `http_proxy`/`all_proxy` 等代理变量（httpx 遇到
+> `socks://` 等不支持的 scheme 会在构造客户端时直接报错），需要走代理时
+> 显式设置 `DEEPSEEK_PROXY=http://127.0.0.1:7892`。
 
 ## 用例清单
 
